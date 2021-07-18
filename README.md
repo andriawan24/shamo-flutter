@@ -1,6 +1,6 @@
 # shamo
 
-A new Flutter project.
+Shamo adalah sebuah aplikasi untuk berjualan sepatu, dibuat dengan Flutter dan didukung dengan backend menggunakan Laravel.
 
 ## Getting Started
 

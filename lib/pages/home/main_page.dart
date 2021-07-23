@@ -19,7 +19,9 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     Widget cardButton() {
       return FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, '/cart');
+        },
         backgroundColor: secondaryColor,
         child: Image.asset(
           'assets/icon_cart.png',
@@ -36,7 +38,7 @@ class _MainPageState extends State<MainPage> {
         child: BottomAppBar(
           shape: CircularNotchedRectangle(),
           notchMargin: 12,
-          clipBehavior: Clip.antiAlias,
+          clipBehavior: Clip.antiAliasWithSaveLayer,
           child: BottomNavigationBar(
             backgroundColor: backgroundColor4,
             currentIndex: currentIndex,

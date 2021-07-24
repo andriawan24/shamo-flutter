@@ -35,6 +35,12 @@ dependencies:
   # Slider Carousel
   carousel_slider: ^4.0.0
 
+  # Provider
+  provider: ^5.0.0
+
+  # Http
+  http: ^0.13.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

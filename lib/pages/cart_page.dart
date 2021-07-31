@@ -16,7 +16,7 @@ class CartPage extends StatelessWidget {
       );
     }
 
-    Widget emptyCard() {
+    Widget emptyCart() {
       return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

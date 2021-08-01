@@ -1,6 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shamo/model/product_model.dart';
+import 'package:shamo/providers/cart_provider.dart';
+import 'package:shamo/providers/wishlist_provider.dart';
 import 'package:shamo/theme.dart';
 
 class ProductPage extends StatefulWidget {
@@ -18,7 +21,7 @@ List images = [
   'assets/image_shoes.png',
 ];
 
-List familiar_shoes = [
+const List familiar_shoes = [
   'assets/image_shoes.png',
   'assets/image_shoes.png',
   'assets/image_shoes.png',
@@ -34,7 +37,89 @@ int currentIndex = 0;
 class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
+    WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
+
     int index = -1;
+
+    Future<void> showSuccessDialog() async {
+      return showDialog(
+        context: context,
+        builder: (BuildContext context) => Container(
+          width: MediaQuery.of(context).size.width - (2 * defaultMargin),
+          child: AlertDialog(
+            backgroundColor: backgroundColor3,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+            content: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Icon(
+                        Icons.close,
+                        color: primaryTextColor,
+                      ),
+                    ),
+                  ),
+                  Image.asset(
+                    'assets/icon_success.png',
+                    width: 100,
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  Text(
+                    'Hurray :)',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: semiBold,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  Text(
+                    'Item added successfully',
+                    style: secondaryTextStyle,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    width: 154,
+                    height: 44,
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/cart');
+                      },
+                      style: TextButton.styleFrom(
+                        backgroundColor: primaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: Text(
+                        'View My Cart',
+                        style: primaryTextStyle.copyWith(
+                          fontSize: 16,
+                          fontWeight: medium,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+    }
 
     Widget indicator(int index) {
       return Container(
@@ -168,9 +253,38 @@ class _ProductPageState extends State<ProductPage> {
                       ],
                     ),
                   ),
-                  Image.asset(
-                    'assets/button_wishlist.png',
-                    width: 46,
+                  GestureDetector(
+                    onTap: () {
+                      wishlistProvider.setProduct(widget.product!);
+
+                      if (wishlistProvider.isWishlist(widget.product!)) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: secondaryColor,
+                            content: Text(
+                              'Has been added to the Wishlist',
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: alertColor,
+                            content: Text(
+                              'Has been removed from the Wishlist',
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        );
+                      }
+                    },
+                    child: Image.asset(
+                      wishlistProvider.isWishlist(widget.product!)
+                          ? 'assets/button_wishlist_blue.png'
+                          : 'assets/button_wishlist.png',
+                      width: 46,
+                    ),
                   )
                 ],
               ),
@@ -299,7 +413,10 @@ class _ProductPageState extends State<ProductPage> {
                     child: Container(
                       height: 54,
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          cartProvider.addCart(widget.product!);
+                          showSuccessDialog();
+                        },
                         child: Text(
                           'Add to cart',
                           style: primaryTextStyle.copyWith(

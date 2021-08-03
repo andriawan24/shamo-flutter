@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shamo/model/product_model.dart';
+import 'package:shamo/pages/detail_chat_page.dart';
 import 'package:shamo/providers/cart_provider.dart';
 import 'package:shamo/providers/wishlist_provider.dart';
 import 'package:shamo/theme.dart';
@@ -245,7 +246,7 @@ class _ProductPageState extends State<ProductPage> {
                           ),
                         ),
                         Text(
-                          '${widget.product!.category!.name}',
+                          '${widget.product!.category!.name!}',
                           style: secondaryTextStyle.copyWith(
                             fontSize: 12,
                           ),
@@ -395,13 +396,22 @@ class _ProductPageState extends State<ProductPage> {
               margin: EdgeInsets.all(defaultMargin),
               child: Row(
                 children: [
-                  Container(
-                    width: 54,
-                    height: 54,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(
-                          'assets/button_chat.png',
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  DetailChatPage(widget.product!)));
+                    },
+                    child: Container(
+                      width: 54,
+                      height: 54,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(
+                            'assets/button_chat.png',
+                          ),
                         ),
                       ),
                     ),

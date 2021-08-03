@@ -13,14 +13,14 @@ class ProductModel {
   List<GalleryModel>? galleries;
 
   ProductModel({
-    required this.id,
-    required this.name,
-    required this.price,
-    required this.description,
-    required this.tags,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.galleries,
+    this.id,
+    this.name,
+    this.price,
+    this.description,
+    this.tags,
+    this.createdAt,
+    this.updatedAt,
+    this.galleries,
   });
 
   ProductModel.fromJson(Map<String, dynamic> json) {
@@ -44,10 +44,12 @@ class ProductModel {
       'price': price,
       'description': description,
       'tags': tags,
-      'category': category!.toJson(),
-      'galleries': galleries!.map((e) => e.toJson()).toList(),
+      'category': category?.toJson(),
+      'galleries': galleries?.map((e) => e.toJson()).toList(),
       'createdAt': createdAt.toString(),
       'updatedAt': updatedAt.toString()
     };
   }
 }
+
+class UnitializedProductModel extends ProductModel {}

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "681171087973",
+    "project_id": "shamo-9c0d8",
+    "storage_bucket": "shamo-9c0d8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:681171087973:android:9635fc5a1c1453517fcc8c",
+        "android_client_info": {
+          "package_name": "com.fall.shamo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "681171087973-fte6ebmi51gbap5vrs7ivu0qa48kmmk5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPVqNkUKUknTcg_Ui_IlE_p8PUdKfqHQ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "681171087973-fte6ebmi51gbap5vrs7ivu0qa48kmmk5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

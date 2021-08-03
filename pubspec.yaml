@@ -41,6 +41,10 @@ dependencies:
   # Http
   http: ^0.13.3
 
+  # Firebase
+  firebase_core: ^1.4.0
+  cloud_firestore: ^2.4.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

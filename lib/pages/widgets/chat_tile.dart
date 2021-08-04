@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:shamo/model/message_model.dart';
 import 'package:shamo/model/product_model.dart';
 import 'package:shamo/pages/detail_chat_page.dart';
 import 'package:shamo/theme.dart';
 
 class ChatTile extends StatelessWidget {
-  const ChatTile({Key? key}) : super(key: key);
+  final MessageModel? message;
+  ChatTile({this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +45,7 @@ class ChatTile extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "Good Night, This item is on... Good Night, This item is on... Good Night, This item is on...",
+                        message!.message!,
                         style: secondaryTextStyle.copyWith(
                           fontWeight: light,
                         ),

@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:shamo/model/cart_model.dart';
-import 'package:shamo/model/user_model.dart';
 import 'package:http/http.dart' as http;
 
 class TransactionService {
